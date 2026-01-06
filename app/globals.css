@@ -5,6 +5,15 @@
   --foreground: #171717;
 }
 
+@keyframes fast-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-hover-loop {
+  animation: fast-spin 0.5s linear infinite;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
