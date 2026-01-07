@@ -1,6 +1,10 @@
 from svgpathtools import svg2paths, Path
 import numpy
+'''
 
+I SAID DO NOT OPEN , WHY ARE U VIEWING THIS ,U PERVERT !!!!! 😤😤😡😡😡😡😡👿👿👿👿
+
+'''
 
 paths, attrs = svg2paths("Ellipse 1.svg")
 points = [seg.point(t) for seg in paths[0] for t in numpy.linspace(0,1,60)]
