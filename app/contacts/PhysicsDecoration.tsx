@@ -116,15 +116,12 @@ export default function PhysicsDecoration() {
                 isStatic: true,   // no gravity, no forces
                 isSensor: true,   // no collisions
                 render: {
-                    zIndex: 20,
 
                     sprite: {
 
                         texture: "/contacts/green.png",
                         xScale: 1,
                         yScale: 1,
-                        xOffset: 0,
-                        yOffset: -0,
                     },
                 }
             }
@@ -139,10 +136,8 @@ export default function PhysicsDecoration() {
             {
                 frictionAir: 0.03,
                 restitution: 0.2,
-                frictionAngular: 0.2,
                 inertia: Infinity,
                 render: {
-                    zIndex: 20,
                     //debug here for hitbox
                     // strokeStyle: "#00ffff",
                     // lineWidth: 2,
@@ -176,10 +171,8 @@ export default function PhysicsDecoration() {
             frictionAir: 0.03,
             restitution: 0.2,
             inertia: Infinity,
-            frictionAngular: 0.2,
 
             render: {
-                zIndex: 20,
                 sprite: {
                     texture: "/contacts/yellow.png",
                     xScale: (yellowRadius * 2) / 212,
@@ -200,10 +193,8 @@ export default function PhysicsDecoration() {
             frictionAir: 0.03,
             restitution: 0.2,
             inertia: Infinity,
-            frictionAngular: 0.2,
 
             render: {
-                zIndex: 20,
                 sprite: {
                     texture: "/contacts/red.png",
                     xScale: (redRadius * 2) / 212,
@@ -219,7 +210,14 @@ export default function PhysicsDecoration() {
 
 
         //ROPES (CONSTRAINTS)
-
+        type RopeOptions = {
+              world: Matter.World;
+              anchor: Matter.Vector;
+              body: Matter.Body;
+              bodyOffset: Matter.Vector;
+              length: number;
+              segments?: number;
+            };
 
         function createRope({
                                 world,
@@ -228,7 +226,7 @@ export default function PhysicsDecoration() {
                                 bodyOffset,
                                 length,
                                 segments = 18, // more segments = less stretch
-                            }) {
+                            }:RopeOptions) {
             const segmentLength = length / segments;
             const parts = [];
             const constraints = [];
@@ -406,11 +404,7 @@ export default function PhysicsDecoration() {
         const runner = Runner.create();
         Runner.run(runner, engine);
         Render.run(render);
-        Render.create({
-            options: {
-                wireframes: true
-            }
-        });
+
         engine.gravity.y = 0;
 
         setTimeout(() => {
